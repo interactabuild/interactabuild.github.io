@@ -224,7 +224,7 @@
     new IntersectionObserver(entries => {
       if (!entries[0]?.isIntersecting || previewsNear) return;
       previewsNear = true; wakeArt(mode);
-    }, { rootMargin: '700px 0px' }).observe(canvas);
+    }, { rootMargin: '250px 0px' }).observe(canvas);
   }
 
   function update(dt) {
