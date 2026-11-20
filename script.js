@@ -37,8 +37,12 @@ const SITE = {
   const launchText = launch.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   const shortLaunch = launch.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
   const safeUrl = value => {
+    const text = String(value || '').trim();
+    // An empty address would otherwise mean "this page", which on the live site looks
+    // like a real https download.
+    if (!text) return '';
     try {
-      const url = new URL(String(value || '').trim(), window.location.href);
+      const url = new URL(text, window.location.href);
       return url.protocol === 'https:' || (url.protocol === 'http:' && url.hostname === 'localhost') ? url.href : '';
     } catch { return ''; }
   };
