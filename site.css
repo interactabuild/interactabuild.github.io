@@ -111,3 +111,8 @@
   .req-list>div{grid-template-columns:1fr;gap:6px}
   .games-section,.create-section,.req-section{padding:70px 0}
 }
+
+/* Contact address under the contact text. */
+.contact-copy>p.contact-direct{margin:-20px 0 30px;font-size:13px}
+.contact-direct a{color:var(--aqua);font-weight:750;overflow-wrap:anywhere}
+.contact-direct a:hover{color:#fff}

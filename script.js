@@ -12,7 +12,7 @@ const SITE = {
   version: '0.1.0',
   windows: { url: '', size: '120 MB' },  // e.g. 'https://…/Interactabuild-Setup-0.1.0.exe'
   linux: { url: '', size: '127 MB' },    // e.g. 'https://…/interactabuild_0.1.0_amd64.deb'
-  contactEmail: ''
+  contactEmail: 'contactus@interactabuild.com'
 };
 
 (() => {
