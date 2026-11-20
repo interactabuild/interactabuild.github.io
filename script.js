@@ -20,6 +20,32 @@ const SITE = {
 (() => {
   'use strict';
 
+  /* Always open at the top. Phones remember addresses like /#notify (from tapping a
+     button) and restore old scroll positions, which opened the page half way down.
+     In-page links still scroll to their section, but no longer change the address. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const openedAtSection = Boolean(location.hash);
+  if (openedAtSection) history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo(0, 0);
+  window.addEventListener('pageshow', () => window.scrollTo(0, 0));
+  // Firefox jumps to the old section only after the page has loaded.
+  if (openedAtSection) window.addEventListener('load', () => setTimeout(() => window.scrollTo(0, 0), 0));
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) return;
+    const id = link.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : document.documentElement;
+    if (!target) return;
+    event.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    // The "skip to content" link also moves keyboard focus, as a normal link would.
+    if (link.classList.contains('skip-link')) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+  });
+
   const navToggle = document.getElementById('mobile-toggle');
   const nav = document.getElementById('main-nav');
   navToggle.addEventListener('click', () => {
