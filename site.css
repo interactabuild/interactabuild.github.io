@@ -130,3 +130,7 @@
 .section-intro.demo-intro{font-size:18.75px;line-height:1.6;font-weight:800;letter-spacing:-.3px;color:#dff3fb;max-width:900px;margin:0 0 14px}
 @media(max-width:650px){.section-intro.demo-intro{font-size:16px;letter-spacing:-.2px}}
 @media(max-width:650px){.demo-guide-note{font-size:16px}}
+
+/* Text under the headline: larger. */
+.hero-intro{font-size:19px;line-height:1.7;max-width:560px;color:#c9dbe5}
+@media(max-width:650px){.hero-intro{font-size:17px;line-height:1.7}}
