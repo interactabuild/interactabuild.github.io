@@ -2,13 +2,15 @@
   INTERACTABUILD WEBSITE SETTINGS — the only part you normally need to edit.
 
   Downloads: put the full https:// address of each installer in `url`. While a url is
-  empty, its buttons say "Available 7 December" and lead to the launch-news form instead.
+  empty, its buttons say "Available February 2027" and lead to the launch-news form instead.
+  launchDate: a day ('2027-02-15', shown as "15 February 2027") or just a month ('2027-02',
+  shown as "February 2027").
   Contact: put the email address that should receive launch-news sign-ups and questions in
   `contactEmail`. While it is empty, the form only prepares a message the visitor can copy;
   nothing is sent or stored. This website has no trackers, cookies or server code.
 */
 const SITE = {
-  launchDate: '2026-12-07',          // shown as "7 December 2026"
+  launchDate: '2027-02',             // shown as "February 2027"
   version: '0.1.0',
   windows: { url: '', size: '120 MB' },  // e.g. 'https://…/Interactabuild-Setup-0.1.0.exe'
   linux: { url: '', size: '127 MB' },    // e.g. 'https://…/interactabuild_0.1.0_amd64.deb'
@@ -33,9 +35,10 @@ const SITE = {
   document.getElementById('year').textContent = String(new Date().getFullYear());
 
   /* Downloads. A button works only once a real https address is set above. */
-  const launch = new Date(`${SITE.launchDate}T00:00:00`);
-  const launchText = launch.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  const shortLaunch = launch.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+  const monthOnly = /^\d{4}-\d{2}$/.test(SITE.launchDate);
+  const launch = new Date(`${SITE.launchDate}${monthOnly ? '-01' : ''}T00:00:00`);
+  const launchText = launch.toLocaleDateString('en-GB', monthOnly ? { month: 'long', year: 'numeric' } : { day: 'numeric', month: 'long', year: 'numeric' });
+  const shortLaunch = monthOnly ? launchText : launch.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
   const safeUrl = value => {
     const text = String(value || '').trim();
     // An empty address would otherwise mean "this page", which on the live site looks

@@ -11,7 +11,7 @@ Edit the settings at the top of `script.js`:
 
 ```javascript
 const SITE = {
-  launchDate: '2026-12-07',
+  launchDate: '2027-02',
   version: '0.1.0',
   windows: { url: '', size: '120 MB' },
   linux: { url: '', size: '127 MB' },
@@ -20,9 +20,9 @@ const SITE = {
 ```
 
 - **`windows.url` / `linux.url`**: the full `https://` address where each installer is
-  hosted. While a url is empty, its buttons say "Available 7 December" and lead to the
+  hosted. While a url is empty, its buttons say "Available February 2027" and lead to the
   launch-news form. As soon as it is set, every download button on the page uses it, and
-  the page changes from "Launching 7 December 2026" to "Out now".
+  the page changes from "Launching February 2027" to "Out now".
 - **`version` / `size`**: update these with each new installer.
 - **`contactEmail`**: the address that should receive launch-news sign-ups and questions.
   While it is empty, the form only prepares a message the visitor can copy; nothing is sent.
