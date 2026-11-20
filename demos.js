@@ -28,6 +28,12 @@
     range: { name: 'ULTIMATE SHOOTING RANGE', caption: 'HIT THE MOVING BULLSEYES · 60 SECONDS', title: 'Take your best shot.', help: 'Click or tap the bullseyes as they move. Hit the middle for double points. In the full game you shoot foam darts or throw balls at the wall.', action: 'Fire at a target', aria: 'Ultimate Shooting Range. Hit the moving bullseyes in 60 seconds.' },
   };
   let mode = 'wall', elapsed = 0, lastTime = 0, frameVisible = true;
+  // Preview pictures are fetched only once the previews are near the screen, and only
+  // for the preview being shown, so opening the page on a phone stays quick.
+  const art = { wall: [], pond: [], ocean: [], range: [] };
+  let previewsNear = false;
+  const artFor = (which, src) => { const img = new Image(); art[which].push([img, src]); return img; };
+  const wakeArt = which => { for (const [img, src] of art[which]) if (!img.src) img.src = src; };
   let pointer = { x: 490, y: 280, active: false };
   let state = {};
 
@@ -85,6 +91,7 @@
   function selectGame(next, moveFocus = false) {
     if (!settings[next]) return;
     mode = next;
+    if (previewsNear) wakeArt(next);
     for (const tab of tabButtons) {
       const active = tab.dataset.demo === next;
       tab.classList.toggle('is-active', active);
@@ -214,6 +221,10 @@
   else window.addEventListener('resize', resize);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => { frameVisible = entries[0]?.isIntersecting ?? true; }, { rootMargin: '80px' }).observe(canvas);
+    new IntersectionObserver(entries => {
+      if (!entries[0]?.isIntersecting || previewsNear) return;
+      previewsNear = true; wakeArt(mode);
+    }, { rootMargin: '700px 0px' }).observe(canvas);
   }
 
   function update(dt) {
@@ -280,8 +291,7 @@
   // use the game's starting settings: 76 px, growing from 22% to 180% over 22.75 s
   // (effect speed 5), with its pink glow.
   const MONSTER = { size: 76, seconds: 22.75, from: .22, to: 1.8 };
-  const loadArt = src => { const img = new Image(); img.src = src; return img; };
-  const CANDY_WORLD = { background: loadArt('assets/wall/candy-land.jpg'), monster: loadArt('assets/wall/candy-monster.png') };
+  const CANDY_WORLD = { background: artFor('wall', 'assets/wall/candy-land.jpg'), monster: artFor('wall', 'assets/wall/candy-monster.png') };
   const monsterSize = m => MONSTER.size * (MONSTER.from + (MONSTER.to - MONSTER.from) * Math.min(1, m.age / MONSTER.seconds));
   const ready = img => img.complete && img.naturalWidth > 0;
   function drawWall() {
@@ -311,7 +321,7 @@
      (only seen inside it) and, once off the screen, come back in from a random edge. */
   // The open water of the game's koi pond picture: fish show only inside it.
   const POND = { x: 530, y: 255, rx: 365, ry: 155 };
-  const pondPhoto = new Image(); pondPhoto.src = 'assets/pond/koi.jpg';
+  const pondPhoto = artFor('pond', 'assets/pond/koi.jpg');
   // The game's starting settings (speed 50, gentle curves), with the sizes scaled from
   // the game's 1280-wide screen to this 960-wide one (fish 85, frog 45, beetle 30).
   const FISH = { speed: 50, size: 64, path: 1 };
@@ -342,7 +352,7 @@
   };
   const fishArt = {};
   for (const type of Object.keys(swimStyles)) {
-    const img = new Image(); img.src = `assets/fish/${type}.png`; fishArt[type] = img;
+    fishArt[type] = artFor('pond', `assets/fish/${type}.png`);
   }
   const wrapAngle = a => Math.atan2(Math.sin(a), Math.cos(a));
   const inPond = (x, y) => ((x - POND.x) / POND.rx) ** 2 + ((y - POND.y) / POND.ry) ** 2 <= 1;
@@ -664,8 +674,8 @@
       seahorse: [106, 200], pufferfish: [200, 169], 'pufferfish-inflated': [200, 169], lionfish: [200, 157], parrotfish: [200, 155]
     };
     const sheets = {};
-    for (const file of Object.keys(SHEET)) { const im = new Image(); im.src = `${DIR}${file}.webp`; sheets[file] = im; }
-    const photo = new Image(); photo.src = `${DIR}tropical-reef.jpg`;
+    for (const file of Object.keys(SHEET)) sheets[file] = artFor('ocean', `${DIR}${file}.webp`);
+    const photo = artFor('ocean', `${DIR}tropical-reef.jpg`);
     // Vertical band (fraction of height), cruising speed (body lengths per second),
     // steering agility (1/s), time for a full body turn (s), body thickness / length.
     const BAND = { clownfish: [.55, .88], blueTang: [.2, .75], butterflyfish: [.35, .85], moorishIdol: [.3, .82], seahorse: [.55, .86], angelfish: [.3, .85], lionfish: [.3, .8], pufferfish: [.3, .85], parrotfish: [.5, .88] };
@@ -920,7 +930,7 @@
   // Ultimate Shooting Range: the game's starting settings (Target practice, Industrial
   // warehouse, 7 bullseyes, size 95, speed 30, mixed movement, 20 points, 60 seconds).
   const RANGE = { count: 7, size: 95, speed: 30, points: 20, seconds: 60, react: 1.0 };
-  const rangePhoto = loadArt('assets/range/warehouse.jpg'), bullseye = loadArt('assets/range/bullseye.png');
+  const rangePhoto = artFor('range', 'assets/range/warehouse.jpg'), bullseye = artFor('range', 'assets/range/bullseye.png');
   const rangeR = () => H * (.028 + RANGE.size / 4600);
   const RANGE_PATTERNS = ['horizontal', 'vertical', 'zigzag', 'evasive'];
   function makeRangeTarget(i) {
