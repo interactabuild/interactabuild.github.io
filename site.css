@@ -96,7 +96,9 @@
   .steps-four{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:900px){
-  .hero-visual{max-width:640px;margin:46px auto 0;padding:0 0 60px 14px}
+  /* Phones and tablets: the artwork comes first, above the headline. */
+  .hero{padding-top:22px}
+  .hero-visual{order:-1;max-width:640px;margin:0 auto 34px;padding:0}
   .create-grid,.req-grid,.download-cards{grid-template-columns:1fr;gap:34px}
   .games-section,.create-section,.req-section{padding:85px 0}
 }
@@ -115,8 +117,3 @@
 
 /* Keep short phrases (e.g. each part of the headline) on one line. */
 .nowrap{white-space:nowrap}
-
-/* The neon Interactabuild logo in the top bar. */
-.header-logo{display:block;height:50px;width:auto}
-@media(max-width:900px){.header-logo{height:40px}}
-@media(max-width:400px){.header-logo{height:34px}}
