@@ -112,3 +112,6 @@
 .contact-copy>p.contact-direct{margin:-20px 0 30px;font-size:13px}
 .contact-direct a{color:var(--aqua);font-weight:750;overflow-wrap:anywhere}
 .contact-direct a:hover{color:#fff}
+
+/* Keep short phrases (e.g. each part of the headline) on one line. */
+.nowrap{white-space:nowrap}
