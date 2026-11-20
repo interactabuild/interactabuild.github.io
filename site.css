@@ -122,11 +122,11 @@
 .demo-help-above{margin:0 0 16px;padding:18px 22px;background:#111d2b;border:1px solid rgba(161,210,225,.13);border-radius:14px}
 .demo-help-above strong{color:#eefaff}
 .demo-help-above p{font-size:13.5px}
-.demo-guide-note{font-size:37.5px;line-height:1.25;font-weight:800;letter-spacing:-1px;color:#dff3fb;max-width:1000px;margin:0 0 34px}
+.demo-guide-note{font-size:17px;line-height:1.75;max-width:760px;color:#c4d6e1;margin:0 0 30px}
 @media(max-width:650px){.demo-help-above{padding:15px 16px}.demo-help-above p{font-size:12.5px}}
 
 /* Have a go: the heading on its own line, then the intro, then the "On your wall" line. */
 .demo-section-top{grid-template-columns:1fr;margin-bottom:22px}
-.section-intro.demo-intro{font-size:17px;line-height:1.75;max-width:760px;color:#c4d6e1;margin:0 0 18px}
-@media(max-width:650px){.section-intro.demo-intro{font-size:16px}}
-@media(max-width:650px){.demo-guide-note{font-size:28px;letter-spacing:-.6px;margin-bottom:26px}}
+.section-intro.demo-intro{font-size:37.5px;line-height:1.25;font-weight:800;letter-spacing:-1px;color:#dff3fb;max-width:1000px;margin:0 0 18px}
+@media(max-width:650px){.section-intro.demo-intro{font-size:28px;letter-spacing:-.6px}}
+@media(max-width:650px){.demo-guide-note{font-size:16px}}
