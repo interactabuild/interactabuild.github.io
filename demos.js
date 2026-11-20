@@ -27,7 +27,7 @@
     ocean: { name: 'OCEAN EXPLORER', caption: 'TAP THE WATER TO FEED THE FISH', title: 'Discover beneath the surface.', help: 'Tap the water to send out ripples and drop food, and watch the fish swim over to eat it. Tap near the pufferfish to see it puff up.', action: 'Feed the fish', aria: 'Ocean Explorer. Tap the water to make ripples and feed the fish on a coral reef.' },
     range: { name: 'ULTIMATE SHOOTING RANGE', caption: 'HIT THE MOVING BULLSEYES · 60 SECONDS', title: 'Take your best shot.', help: 'You have 60 seconds. Tap the swinging bullseyes to score 20 points, or hit the middle for double. Press Play again when time runs out.', action: 'Fire at a target', aria: 'Ultimate Shooting Range. Hit the moving bullseyes in 60 seconds.' },
   };
-  let mode = 'wall', elapsed = 0, lastTime = 0, frameVisible = true;
+  let mode = 'range', elapsed = 0, lastTime = 0, frameVisible = true;
   // Preview pictures are fetched only once the previews are near the screen, and only
   // for the preview being shown, so opening the page on a phone stays quick.
   const art = { wall: [], pond: [], ocean: [], range: [] };
@@ -1064,7 +1064,7 @@
     }
     requestAnimationFrame(tick);
   }
-  selectGame('wall');
+  selectGame('range');
   resize();
   requestAnimationFrame(tick);
 })();
