@@ -118,12 +118,9 @@
 /* Keep short phrases (e.g. each part of the headline) on one line. */
 .nowrap{white-space:nowrap}
 
-/* Have a go: how to play each of the four previews. */
-.demo-guide{list-style:none;margin:0 0 14px;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.demo-guide li{background:#111d2b;border:1px solid rgba(161,210,225,.13);border-radius:14px;padding:18px 18px 16px}
-.demo-guide-num{display:block;color:var(--aqua);font-size:11px;font-weight:900;letter-spacing:1.2px;margin-bottom:8px}
-.demo-guide h3{font-size:16px;margin:0 0 7px;letter-spacing:-.3px;color:#eefaff}
-.demo-guide p{font-size:13px;line-height:1.7;color:#a7b9c9;margin:0}
+/* Have a go: the chosen template's description, above the live preview. */
+.demo-help-above{margin:0 0 16px;padding:18px 22px;background:#111d2b;border:1px solid rgba(161,210,225,.13);border-radius:14px}
+.demo-help-above strong{color:#eefaff}
+.demo-help-above p{font-size:13.5px}
 .demo-guide-note{font-size:12.5px;color:#8ea2b2;margin:0 0 30px}
-@media(max-width:1100px){.demo-guide{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.demo-guide{grid-template-columns:1fr;gap:10px}.demo-guide li{padding:15px 16px}}
+@media(max-width:650px){.demo-help-above{padding:15px 16px}.demo-help-above p{font-size:12.5px}}
