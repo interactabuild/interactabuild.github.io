@@ -124,3 +124,7 @@
 .demo-help-above p{font-size:13.5px}
 .demo-guide-note{font-size:12.5px;color:#8ea2b2;margin:0 0 30px}
 @media(max-width:650px){.demo-help-above{padding:15px 16px}.demo-help-above p{font-size:12.5px}}
+
+/* Have a go: a larger intro beside the heading. */
+.demo-section-top .section-intro{font-size:17px;line-height:1.75;max-width:470px;color:#c4d6e1}
+@media(max-width:650px){.demo-section-top .section-intro{font-size:16px}}
