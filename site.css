@@ -1,0 +1,113 @@
+/* Interactabuild website: sections added on top of styles.css (brand, hero picture, games,
+   editor, download, requirements). Colours come from the tokens in styles.css. */
+:root{--gold:#ffc23d;--gold-2:#ff9a1f}
+
+/* Brand: the logo icon plus the name in the logo's colours */
+.brand-logo{width:36px;height:36px;border-radius:9px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 6px 18px rgba(0,0,0,.35)}
+.brand-word{font-style:italic;letter-spacing:-.4px}
+.brand-build{background:linear-gradient(180deg,var(--gold),var(--gold-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-download{background:var(--aqua);color:#061722!important;border-color:var(--aqua)!important}
+.nav-download:hover{background:#a2ffe6!important}
+.nav-download span{margin:0 6px 0 0!important}
+
+/* Download buttons */
+.btn-download .dl-icon{font-size:15px;line-height:1}
+.btn-download{gap:10px}
+.btn-download.is-waiting .dl-icon{display:none}
+.btn-wide{width:100%}
+.hero-dl-meta{margin:16px 0 0;font-size:12.5px;color:var(--muted)}
+.hero-dl-meta a{color:var(--aqua);text-decoration:underline;text-underline-offset:3px}
+
+/* Hero picture: the artwork with a real game screenshot on top */
+.hero-visual{position:relative;padding:20px 0 70px 20px}
+.hero-art{display:block;width:100%;height:auto;border-radius:22px;border:1px solid rgba(160,209,230,.18);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.hero-shot{position:absolute;left:-14px;bottom:10px;width:46%;margin:0;border-radius:14px;overflow:hidden;border:1px solid rgba(160,209,230,.3);box-shadow:0 22px 50px rgba(0,0,0,.55);background:#0b1726}
+.hero-shot img{display:block;width:100%;height:auto}
+.hero-shot figcaption{display:flex;align-items:center;gap:8px;padding:9px 12px;font-size:11px;font-weight:800;letter-spacing:.6px;color:#d8f4ff}
+
+/* Games */
+.games-section{padding:118px 0 120px;background:linear-gradient(180deg,#090f1a,#0b1420)}
+.games-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.game-card{display:flex;flex-direction:column;border:1px solid rgba(161,210,225,.13);background:#111d2b;border-radius:18px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s}
+.game-card:hover{transform:translateY(-4px);border-color:rgba(105,240,211,.35)}
+.game-card>img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0b1726}
+.game-body{display:flex;flex-direction:column;gap:9px;padding:18px 18px 20px;flex:1}
+.game-body h3{margin:0;font-size:19px;letter-spacing:-.4px}
+.game-body p{margin:0;color:var(--text);font-size:13px;line-height:1.7;flex:1}
+.game-tag{font-size:9.5px;font-weight:800;letter-spacing:1.6px;color:var(--aqua)}
+.game-body .text-link{align-self:flex-start;margin-top:4px;background:none;border:0;padding:0;color:var(--aqua);font-weight:800;font-size:12.5px}
+.game-card-cta{justify-content:center;gap:16px;padding:28px 22px;background:radial-gradient(ellipse at 30% 20%,rgba(105,240,211,.16),transparent 60%),#0f2131;border-color:rgba(105,240,211,.3)}
+.game-card-cta strong{font-size:22px;line-height:1.25;letter-spacing:-.6px}
+.cta-kicker{font-size:10px;font-weight:800;letter-spacing:1.8px;color:var(--aqua)}
+
+/* Make it yours */
+.create-section{padding:118px 0;background:#08111d;border-top:1px solid var(--line)}
+.create-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:60px;align-items:center}
+.create-shot{margin:0;border-radius:16px;overflow:hidden;border:1px solid rgba(160,209,230,.2);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.create-shot img{display:block;width:100%;height:auto}
+.create-copy>p:not(.eyebrow){color:var(--text);font-size:14.5px;line-height:1.85;margin:22px 0 24px}
+.tick-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.tick-list li{position:relative;padding-left:30px;color:var(--text);font-size:14px;line-height:1.7}
+.tick-list li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:rgba(105,240,211,.14);color:var(--aqua);font-size:12px;font-weight:900;display:grid;place-items:center}
+.tick-list strong{color:var(--white)}
+
+/* How it works: four steps */
+.steps-four{grid-template-columns:repeat(4,1fr)}
+.steps-four .step-card{min-height:0}
+
+/* Download */
+.download-head{max-width:720px;margin-bottom:44px}
+.download-lead{color:#b4c9d3;font-size:15px;line-height:1.8;margin:20px 0 0}
+.download-lead a,.dl-note a,.faq-list a,.faq-side a{color:var(--aqua);text-decoration:underline;text-underline-offset:3px}
+.download-cards{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start}
+.download-cards>*,.games-grid>*,.create-grid>*,.req-grid>*{min-width:0}
+.dl-card{padding:30px;border-radius:20px;border:1px solid rgba(160,209,230,.17);background:linear-gradient(150deg,rgba(28,52,70,.7),rgba(14,28,43,.95))}
+.dl-card-main{border-color:rgba(105,240,211,.45);box-shadow:0 0 0 1px rgba(105,240,211,.08),0 24px 60px rgba(0,0,0,.35)}
+.dl-os{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--aqua)}
+.dl-os svg{width:22px;height:22px;fill:none;stroke:var(--aqua);stroke-width:1.6}
+.dl-card-main .dl-os svg{fill:var(--aqua);stroke:none}
+.dl-card h3{margin:14px 0 6px;font-size:24px;letter-spacing:-.6px}
+.dl-spec{margin:0 0 20px;color:var(--muted);font-size:13px}
+.dl-steps{margin:22px 0 0;padding-left:20px;color:var(--text);font-size:13px;line-height:1.75;display:grid;gap:8px}
+.dl-steps code,.download-section code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;background:rgba(255,255,255,.06);padding:2px 6px;border-radius:5px;color:#dff6ff;overflow-wrap:anywhere}
+.dl-steps strong,.dl-steps em{color:var(--white)}
+.dl-note{margin:26px 0 0;color:var(--muted);font-size:13px}
+
+/* Requirements */
+.req-section{padding:110px 0;background:#0c1724;border-top:1px solid var(--line)}
+.req-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.req-grid .section-intro{margin-top:22px;max-width:380px}
+.req-list{margin:0;border-top:1px solid var(--line)}
+.req-list>div{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.req-list dt{font-weight:800;color:var(--white);font-size:14px}
+.req-list dd{margin:0;color:var(--text);font-size:14px;line-height:1.7}
+
+/* Headings in the new sections, sized like the others */
+.create-copy h2,.download-head h2,.req-grid h2{font-size:clamp(37px,4vw,56px);letter-spacing:-2.7px;line-height:1.14;font-weight:860;margin:0}
+.launch-pill [data-release-pill]{color:inherit;font-size:inherit}
+
+/* Commands on a line of their own */
+.dl-steps>li{min-width:0}
+.dl-steps code.cmd{display:block;max-width:100%;margin-top:6px;padding:8px 10px;white-space:nowrap;overflow-x:auto;word-break:normal;overflow-wrap:normal}
+
+/* Footer links */
+.footer-nav{display:flex;flex-wrap:wrap;gap:22px;font-size:12.5px;color:#b9c8d4}
+.footer-nav a:hover{color:var(--aqua)}
+
+@media(max-width:1130px){
+  .games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps-four{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .hero-visual{max-width:640px;margin:46px auto 0;padding:0 0 60px 14px}
+  .create-grid,.req-grid,.download-cards{grid-template-columns:1fr;gap:34px}
+  .games-section,.create-section,.req-section{padding:85px 0}
+}
+@media(max-width:650px){
+  .create-copy h2,.download-head h2,.req-grid h2{font-size:clamp(38px,10vw,48px);letter-spacing:-2px}
+  .games-grid,.steps-four{grid-template-columns:1fr}
+  .hero-shot{width:58%;left:-6px}
+  .dl-card{padding:22px}
+  .req-list>div{grid-template-columns:1fr;gap:6px}
+  .games-section,.create-section,.req-section{padding:70px 0}
+}

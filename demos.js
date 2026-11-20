@@ -23,7 +23,7 @@
   const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const settings = {
     wall: { name: 'BALL TO WALL', caption: 'HIT THE MOVING TARGETS TO SCORE', title: 'Ready, aim, play.', help: 'Click or tap the moving targets to earn points. Each hit sends them to a new position.', action: 'Hit a target', aria: 'Ball to Wall. Hit glowing moving targets to score.' },
-    pond: { name: 'INTERACTIVE FISHING POND', caption: 'TAP THE WATER TO MAKE A RIPPLE', title: 'The pond comes alive.', help: 'Tap anywhere in the pond. The fish notice the ripple and swim away. There is no scoring in this demo.', action: 'Make a ripple', aria: 'Interactive Fishing Pond. Tap water to make ripples and watch fish move.' },
+    pond: { name: 'PROJECTION POND PRO', caption: 'TAP A FISH TO CATCH IT', title: 'Catch the fish.', help: 'Tap a fish to score. Every catch sends a ripple across the water and a new fish swims in. Miss, and the fish dart away.', action: 'Catch a fish', aria: 'Projection Pond Pro. Tap the fish to catch them and score points.' },
     ocean: { name: 'OCEAN EXPLORER', caption: 'MOVE YOUR POINTER · TAP TO REVEAL', title: 'Discover beneath the surface.', help: 'Move your pointer to illuminate the ocean. Click or tap to reveal a wider circle of underwater life.', action: 'Reveal the ocean', aria: 'Ocean Explorer. Move the pointer to explore and tap to reveal underwater creatures.' },
     range: { name: 'ULTIMATE SHOOTING RANGE', caption: 'AIM AND TAP A TARGET · 12 SHOTS', title: 'Take your best shot.', help: 'Aim at the glowing bullseyes and fire. You have 12 shots before reloading. This is a mouse/touch preview, not foam-dart detection.', action: 'Fire at a target', aria: 'Ultimate Shooting Range. Aim at targets and click to fire. Twelve shots per round.' }
   };
@@ -84,7 +84,7 @@
 
   function updateMetric() {
     if (mode === 'wall') metric.textContent = `SCORE ${String(state.score).padStart(3, '0')}`;
-    if (mode === 'pond') metric.textContent = `RIPPLES ${String(state.touches).padStart(2, '0')}`;
+    if (mode === 'pond') metric.textContent = `SCORE ${String(state.score).padStart(3, '0')}`;
     if (mode === 'ocean') metric.textContent = `REVEALS ${String(state.reveals).padStart(2, '0')}`;
     if (mode === 'range') metric.textContent = `SCORE ${String(state.score).padStart(3, '0')}  ·  AMMO ${state.ammo}`;
     interactBtn.textContent = (mode === 'range' && state.ammo === 0) ? 'Reload (12 shots)' : settings[mode].action;
@@ -139,8 +139,16 @@
       } else fx(x, y, '#a4c4d2');
     } else if (mode === 'pond') {
       const nx = (x - 480) / 408, ny = (y - 260) / 213;
-      if (nx * nx + ny * ny <= 1.0 || useAssist) {
-        if (useAssist) { x = 480; y = 260; }
+      let caught = state.fish.find(f => distance(f.x, f.y, point) <= 34 * f.size);
+      if (useAssist) caught = [...state.fish].sort((a, b) => distance(a.x, a.y, { x: 480, y: 260 }) - distance(b.x, b.y, { x: 480, y: 260 }))[0];
+      if (caught) {
+        state.score += 10; fx(caught.x, caught.y, '#69f0d3', '+10');
+        state.ripples.push({ x: caught.x, y: caught.y, age: 0 });
+        // A new fish swims in from the edge of the pond.
+        const edge = rand(0, TAU);
+        caught.x = 480 + Math.cos(edge) * 340; caught.y = 260 + Math.sin(edge) * 145;
+        caught.angle = edge + Math.PI + rand(-.4, .4); caught.speed = rand(26, 40);
+      } else if (nx * nx + ny * ny <= 1.0) {
         state.touches++;
         state.ripples.push({ x, y, age: 0 });
         state.fish.forEach(f => {
@@ -296,7 +304,21 @@
     trout: { body: '#9bb3a5', edge: '#c8e4c8', patch: '#566f5c' },
     catfish: { body: '#877b61', edge: '#b7ae82', patch: '#655c4e' }
   };
+  // The real Interactabuild fish pictures (facing up); drawn shapes until they load.
+  const fishArt = {};
+  for (const [type, file] of Object.entries({ koi: 'koi', gold: 'goldfish', carp: 'carp', trout: 'trout', catfish: 'catfish' })) {
+    const img = new Image(); img.src = `assets/fish/${file}.png`; fishArt[type] = img;
+  }
   function drawFishTop(f) {
+    const art = fishArt[f.type];
+    if (art && art.complete && art.naturalWidth) {
+      const len = 78 * f.size, wid = len * art.naturalWidth / art.naturalHeight;
+      const wag = Math.sin(state.time * 7 + f.phase) * .07;
+      ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.angle + Math.PI / 2 + wag);
+      ctx.drawImage(art, -wid / 2, -len / 2, wid, len);
+      ctx.restore();
+      return;
+    }
     ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.angle);
     const sc = f.size; ctx.scale(sc, sc);
     const p = koiPalettes[f.type];

@@ -3,14 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080e19">
-  <meta name="description" content="Discover Interactabuild software for interactive projection games. Try four browser demonstrations and find out how to get the program when it launches.">
-  <meta property="og:title" content="Interactabuild — Turn walls into worlds of play">
-  <meta property="og:description" content="Try interactive projection demos and discover the Interactabuild software platform.">
+  <meta name="theme-color" content="#070e19">
+  <meta name="description" content="Interactabuild turns a projector and a camera into interactive wall and floor games. Seven ready-made games, your own pictures, and it runs on your own Windows or Ubuntu PC. Download Interactabuild.">
+  <meta property="og:title" content="Interactabuild — turn any wall into a game">
+  <meta property="og:description" content="Seven ready-made interactive projection games for your own PC, projector and camera. Download Interactabuild for Windows or Ubuntu.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="assets/artwork.jpg">
+  <link rel="icon" href="assets/favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
-  <title>Interactabuild | Turn Walls Into Worlds of Play</title>
+  <link rel="stylesheet" href="site.css">
+  <title>Interactabuild | Turn any wall into a game</title>
   <script src="script.js" defer></script>
   <script src="demos.js" defer></script>
 </head>
@@ -20,15 +23,16 @@
     <header class="site-header" id="top">
       <div class="wrap nav-wrap">
         <a href="#top" class="brand" aria-label="Interactabuild home">
-          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-          <span class="brand-word">INTERACT<span class="brand-a">A</span>BUILD<span class="brand-period">.</span></span>
+          <img class="brand-logo" src="assets/favicon-64.png" alt="" width="36" height="36">
+          <span class="brand-word">INTERACTA<span class="brand-build">BUILD</span></span>
         </a>
         <nav class="nav-links" id="main-nav" aria-label="Main navigation">
-          <a href="#demos">Try the demos</a>
-          <a href="#experiences">Games</a>
+          <a href="#games">Games</a>
+          <a href="#create">Make it yours</a>
           <a href="#how-it-works">How it works</a>
-          <a href="#download">Download</a>
-          <a href="#download" class="nav-contact">Get Interactabuild <span aria-hidden="true">↗</span></a>
+          <a href="#requirements">What you need</a>
+          <a href="#faq">FAQ</a>
+          <a href="#download" class="nav-contact nav-download"><span aria-hidden="true">⬇</span> Download</a>
         </nav>
         <button class="mobile-toggle" id="mobile-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu">
           <span></span><span></span><span></span>
@@ -37,78 +41,155 @@
     </header>
 
     <main id="main">
+      <!-- HERO: one job — get people to the download -->
       <section class="hero section" aria-labelledby="hero-heading">
         <div class="hero-aurora hero-aurora-one" aria-hidden="true"></div>
         <div class="hero-aurora hero-aurora-two" aria-hidden="true"></div>
         <div class="wrap hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> INTERACTIVE PROJECTION SOFTWARE IN DEVELOPMENT</p>
-            <h1 id="hero-heading">Turn any wall into a <span class="gradient-type">world of play.</span></h1>
-            <p class="hero-intro">Meet <strong>Interactabuild</strong> — software being built to help you create and run extraordinary interactive projection games. Explore ocean worlds, bring a pond to life or challenge friends to arcade-style action. Try the demos now, then discover how to get the program when it launches.</p>
+            <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> <span data-release-label>LAUNCHING 7 DECEMBER 2026</span></p>
+            <h1 id="hero-heading">Turn any wall into a <span class="gradient-type">game.</span></h1>
+            <p class="hero-intro"><strong>Interactabuild</strong> turns a projector and a camera into interactive games that react when someone throws a ball or touches the wall. Seven ready-made games, your own pictures, and everything runs on your own computer.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#download">Get Interactabuild <span aria-hidden="true">↗</span></a>
-              <a class="btn btn-secondary" href="#demos"><span class="play-icon" aria-hidden="true">▶</span> Try 4 live demos</a>
+              <a class="btn btn-primary btn-download" href="#download" data-download="windows"><span class="dl-icon" aria-hidden="true">⬇</span> <span data-dl-text>Download for Windows</span></a>
+              <a class="btn btn-secondary" href="#demos"><span class="play-icon" aria-hidden="true">▶</span> Try it in your browser</a>
             </div>
+            <p class="hero-dl-meta" data-dl-meta="windows">Windows 11 · 64-bit · 120 MB · <a href="#download">Also for Ubuntu Linux</a></p>
             <div class="hero-points" aria-label="Key features">
-              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Immersive projection</span>
-              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Interactive games</span>
-              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Create your own setup</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> 7 ready-made games</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Your own pictures</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Runs on your own PC</span>
             </div>
           </div>
-
-          <div class="hero-display">
-            <div class="floating-label floating-label-top"><span class="label-icon">✦</span> MORE THAN A SCREEN</div>
-            <div class="projection-device" aria-hidden="true"><div class="device-lens"></div><span>PROJECTOR</span></div>
-            <div class="projector-beam" aria-hidden="true"></div>
-            <div class="projection-frame">
-              <div class="frame-top">
-                <span><span class="live-dot"></span> INTERACTIVE WALL / DEMO</span>
-                <span class="frame-controls"><i></i><i></i><i></i></span>
-              </div>
-              <div class="play-wall" id="play-wall" aria-label="Interactive target practice preview">
-                <div class="wall-orbit wall-orbit-one" aria-hidden="true"></div>
-                <div class="wall-orbit wall-orbit-two" aria-hidden="true"></div>
-                <div class="wall-lines" aria-hidden="true"></div>
-                <div class="wall-glow" aria-hidden="true"></div>
-                <div class="demo-title"><span class="demo-overline">BALL TO WALL</span><strong>READY. AIM. PLAY.</strong></div>
-                <div class="score-panel"><span>SCORE</span><strong id="demo-score" aria-live="polite">000</strong></div>
-                <div class="demo-targets" id="demo-targets"></div>
-                <div class="demo-instruction">TAP THE GLOWING TARGETS <span aria-hidden="true">✦</span></div>
-                <div class="stage-corner stage-corner-tl" aria-hidden="true"></div>
-                <div class="stage-corner stage-corner-tr" aria-hidden="true"></div>
-                <div class="stage-corner stage-corner-bl" aria-hidden="true"></div>
-                <div class="stage-corner stage-corner-br" aria-hidden="true"></div>
-              </div>
-              <div class="frame-bottom"><span>WEB DEMO · MOUSE / TOUCH</span><button type="button" id="demo-reset" class="reset-btn">↻ <span>Reset</span></button></div>
-            </div>
-            <div class="floating-label floating-label-bottom"><span class="sparkle">✴</span> MADE TO MOVE YOU</div>
-            <p class="hero-display-caption">Interactive illustration — a small taste of the experience.</p>
+          <div class="hero-visual">
+            <img class="hero-art" src="assets/artwork.jpg" width="1200" height="800" alt="Two children hitting glowing targets on an Interactabuild wall game">
+            <figure class="hero-shot">
+              <img src="assets/screens/pond.jpg" width="1120" height="630" alt="Projection Pond Pro: koi and goldfish swimming in a projected pond" loading="lazy">
+              <figcaption><span class="live-dot"></span> Projection Pond Pro</figcaption>
+            </figure>
           </div>
         </div>
-        <div class="wrap scroll-prompt"><span class="scroll-line" aria-hidden="true"></span> SCROLL TO EXPLORE</div>
       </section>
 
-      <section class="statement-strip" aria-label="What Interactabuild creates">
-        <div class="wrap statement-inner"><span>NOT JUST WATCHING</span><span class="strip-star">✳</span><span>REAL INTERACTION</span><span class="strip-star">✳</span><span>UNLIMITED IMAGINATION</span><span class="strip-star">✳</span><span>PLAY REIMAGINED</span></div>
+      <section class="statement-strip" aria-label="What Interactabuild gives you">
+        <div class="wrap statement-inner"><span>7 READY-MADE GAMES</span><span class="strip-star">✳</span><span>YOUR OWN PICTURES</span><span class="strip-star">✳</span><span>BALL, TOUCH OR MOUSE</span><span class="strip-star">✳</span><span>WINDOWS &amp; UBUNTU</span></div>
       </section>
 
+      <!-- GAMES -->
+      <section class="games-section section" id="games" aria-labelledby="games-heading">
+        <div class="wrap">
+          <div class="section-top">
+            <div><p class="eyebrow"><span class="section-number">01 /</span> THE GAMES</p><h2 id="games-heading">Seven games. <span class="soft-text">Ready to play.</span></h2></div>
+            <p class="section-intro">Every game comes with Interactabuild. These are real screenshots from the program. Change each one to suit your space, then play.</p>
+          </div>
+          <div class="games-grid">
+            <article class="game-card">
+              <img src="assets/screens/ball_to_wall.jpg" width="1120" height="630" alt="Ball to Wall: monsters in an underwater city" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">ACTION</span>
+                <h3>Ball to Wall</h3>
+                <p>Throw a ball at the monsters on the wall before time runs out. Pick a world (space station, haunted castle, jungle temple, underwater city or candy land) and up to five monsters, or use your own pictures.</p>
+                <button class="text-link mini-demo-link" data-demo="wall" type="button">Try it in your browser <span aria-hidden="true">↗</span></button>
+              </div>
+            </article>
+            <article class="game-card">
+              <img src="assets/screens/pond.jpg" width="1120" height="630" alt="Projection Pond Pro: fish swimming in a Japanese koi pond" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">CALM &amp; PLAY</span>
+                <h3>Projection Pond Pro</h3>
+                <p>A living pond for the floor or wall. Koi, goldfish, trout, perch, carp and catfish swim and turn like the real thing, frogs kick, newts walk and diving beetles row. Hit a fish to score.</p>
+                <button class="text-link mini-demo-link" data-demo="pond" type="button">Try it in your browser <span aria-hidden="true">↗</span></button>
+              </div>
+            </article>
+            <article class="game-card">
+              <img src="assets/screens/ocean.jpg" width="1120" height="630" alt="Ocean Explorer: a sunlit coral reef" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">EXPLORE</span>
+                <h3>Ocean Explorer</h3>
+                <p>An underwater world of coral reef, lagoon, kelp forest, shipwreck and deep ocean. Touch the water to make ripples and bubbles, and find the hidden creatures.</p>
+                <button class="text-link mini-demo-link" data-demo="ocean" type="button">Try it in your browser <span aria-hidden="true">↗</span></button>
+              </div>
+            </article>
+            <article class="game-card">
+              <img src="assets/screens/shooting_range.jpg" width="1120" height="630" alt="Ultimate Shooting Range: targets in a warehouse range" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">CHALLENGE</span>
+                <h3>Ultimate Shooting Range</h3>
+                <p>Target practice, Drone invasion and Duelling tree, across five ranges from a warehouse to a neon arcade. Play solo or in teams, with scores and difficulty levels.</p>
+                <button class="text-link mini-demo-link" data-demo="range" type="button">Try it in your browser <span aria-hidden="true">↗</span></button>
+              </div>
+            </article>
+            <article class="game-card">
+              <img src="assets/screens/paint_splat.jpg" width="1120" height="630" alt="Paint Splat Wall: red and blue paint splats covering the wall" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">TEAMS</span>
+                <h3>Paint Splat Wall</h3>
+                <p>Every hit leaves a splat in your team's colour. Red against blue: the team covering the most wall when the timer ends wins. Or switch to free paint and just make a mess.</p>
+              </div>
+            </article>
+            <article class="game-card">
+              <img src="assets/screens/constellation.jpg" width="1120" height="630" alt="Constellation Connect: stars labelled A to G being joined in order" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">LEARNING</span>
+                <h3>Constellation Connect</h3>
+                <p>Hit the stars in order to draw a constellation. Learning modes for counting, the alphabet, little letters, skip counting and sums, for ages 3 and up.</p>
+              </div>
+            </article>
+            <article class="game-card">
+              <img src="assets/screens/touch_uncover.jpg" width="1120" height="630" alt="Touch and Uncover: a hidden picture revealed through the mist" loading="lazy">
+              <div class="game-body">
+                <span class="game-tag">REVEAL</span>
+                <h3>Touch and Uncover</h3>
+                <p>Brush away a magical mist to reveal the picture underneath. Choose any picture you like, from a photo of your venue to a party theme.</p>
+              </div>
+            </article>
+            <a class="game-card game-card-cta" href="#download">
+              <span class="cta-kicker">ALL SEVEN INCLUDED</span>
+              <strong>Get every game in one download.</strong>
+              <span class="btn btn-primary btn-download" data-download="windows"><span class="dl-icon" aria-hidden="true">⬇</span> <span data-dl-text>Download for Windows</span></span>
+            </a>
+          </div>
+        </div>
+      </section>
 
+      <!-- MAKE IT YOURS -->
+      <section class="create-section section" id="create" aria-labelledby="create-heading">
+        <div class="wrap create-grid">
+          <figure class="create-shot">
+            <img src="assets/screens/editor.jpg" width="1440" height="900" alt="The Interactabuild editor for Projection Pond Pro, with the pond on the left and settings on the right" loading="lazy">
+          </figure>
+          <div class="create-copy">
+            <p class="eyebrow"><span class="section-number">02 /</span> MAKE IT YOURS</p>
+            <h2 id="create-heading">Your games, <span class="gradient-type">your way.</span></h2>
+            <p>Every game opens in a simple editor. Watch the game on the left while you change it on the right. No coding, no design skills.</p>
+            <ul class="tick-list">
+              <li><strong>Change the look.</strong> Backgrounds, pond shapes, fish, monsters, colours and sounds.</li>
+              <li><strong>Use your own pictures.</strong> Upload your logo, a party theme or photos of your venue.</li>
+              <li><strong>Save your games.</strong> Keep as many versions as you like and open them again with one click.</li>
+              <li><strong>Projector view.</strong> The game fills the projector while you control it from your screen.</li>
+              <li><strong>Set up with a mouse.</strong> Build and test every game before the camera is even plugged in.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- BROWSER DEMOS -->
       <section class="demo-lab section" id="demos" aria-labelledby="demos-heading">
         <div class="wrap">
           <div class="section-top demo-section-top">
-            <div><p class="eyebrow"><span class="section-number">01 /</span> INTERACTIVE SHOWCASE</p><h2 id="demos-heading">Don't just watch. <span class="gradient-type">Try it.</span></h2></div>
-            <p class="section-intro">Four playable mini-experiences made for this website. Use your mouse or touchscreen to explore what Interactabuild is working towards.</p>
+            <div><p class="eyebrow"><span class="section-number">03 /</span> TRY IT NOW</p><h2 id="demos-heading">Have a go. <span class="gradient-type">Right here.</span></h2></div>
+            <p class="section-intro">Four mini versions of the games to play with your mouse or finger. The real games run full size on your wall, and react to a ball or a touch.</p>
           </div>
-          <div class="demo-switcher" role="tablist" aria-label="Choose an interactive demonstration">
+          <div class="demo-switcher" role="tablist" aria-label="Choose a game to try">
             <button id="demo-tab-wall" type="button" role="tab" aria-selected="true" aria-controls="demo-panel" class="demo-tab is-active" data-demo="wall"><span class="demo-tab-num">01</span><span>Ball to Wall</span></button>
-            <button id="demo-tab-pond" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" class="demo-tab" data-demo="pond"><span class="demo-tab-num">02</span><span>Fishing Pond</span></button>
+            <button id="demo-tab-pond" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" class="demo-tab" data-demo="pond"><span class="demo-tab-num">02</span><span>Projection Pond Pro</span></button>
             <button id="demo-tab-ocean" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" class="demo-tab" data-demo="ocean"><span class="demo-tab-num">03</span><span>Ocean Explorer</span></button>
             <button id="demo-tab-range" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" class="demo-tab" data-demo="range"><span class="demo-tab-num">04</span><span>Shooting Range</span></button>
           </div>
           <div id="demo-panel" role="tabpanel" aria-labelledby="demo-tab-wall" tabindex="0" class="demo-console">
-            <div class="demo-console-top"><span><span class="live-dot"></span> LIVE BROWSER DEMO</span><span>SIMULATED GAMEPLAY · NO HARDWARE NEEDED</span></div>
+            <div class="demo-console-top"><span><span class="live-dot"></span> BROWSER PREVIEW</span><span>MOUSE OR TOUCH · NO CAMERA NEEDED</span></div>
             <div class="demo-canvas-wrap">
-              <canvas id="experience-canvas" tabindex="0" aria-label="Ball to Wall demo. Click or tap the glowing targets to score points. Keyboard: press Space or Enter to interact.">Your browser needs HTML5 Canvas to display the demo.</canvas>
+              <canvas id="experience-canvas" tabindex="0" aria-label="Ball to Wall preview. Click or tap the glowing targets to score points. Keyboard: press Space or Enter to interact.">Your browser needs HTML5 Canvas to show the preview.</canvas>
               <div class="demo-canvas-chrome"><span id="demo-game-name">BALL TO WALL</span><span id="demo-live-metric" aria-live="polite">SCORE 000</span></div>
               <div class="demo-overlay-bottom" id="demo-instruction-line">HIT THE MOVING TARGETS TO SCORE</div>
             </div>
@@ -117,93 +198,98 @@
               <div class="demo-controls"><button id="demo-interact" class="btn btn-primary demo-action-btn" type="button">Hit a target</button><button id="demo-restart" class="btn btn-secondary demo-reset-btn" type="button">↻ Restart</button></div>
             </div>
           </div>
-          <div class="demo-below"><p><span aria-hidden="true">✦</span> These are simplified, original browser demonstrations — not footage or a hardware-connected version of the software.</p><a href="#download" class="demo-product-link">Want the real program? See download details <span aria-hidden="true">↗</span></a></div>
+          <div class="demo-below"><p><span aria-hidden="true">✦</span> Simplified previews made for this website. The full games have more to them, and run on your wall.</p><a href="#download" class="demo-product-link">Like it? Get the full program <span aria-hidden="true">↗</span></a></div>
         </div>
       </section>
 
-      <section class="experiences section" id="experiences" aria-labelledby="experiences-heading">
-        <div class="wrap">
-          <div class="section-top">
-            <div><p class="eyebrow"><span class="section-number">02 /</span> THE EXPERIENCES</p><h2 id="experiences-heading">One wall. <span class="soft-text">Endless possibilities.</span></h2></div>
-            <p class="section-intro">Four interactive game concepts for the Interactabuild program. Try the live browser previews, then explore the ideas behind each experience.</p>
-          </div>
-          <div class="experience-grid">
-            <article class="experience-card card-wall">
-              <div class="experience-art art-wall">
-                <div class="art-grid" aria-hidden="true"></div>
-                <div class="target-art target-art-one" aria-hidden="true"><span></span></div>
-                <div class="target-art target-art-two" aria-hidden="true"><span></span></div>
-                <div class="target-art target-art-three" aria-hidden="true"><span></span></div>
-                <div class="effect-ring" aria-hidden="true"></div>
-                <span class="art-label">01 / ACTION</span>
-                <span class="art-overlay-text">AIM. HIT. REPEAT.</span>
-              </div>
-              <div class="experience-content"><div class="experience-meta"><span>ACTION & ENERGY</span><span class="status-tag">IN DEVELOPMENT</span></div><h3>Ball to Wall</h3><p>A fast-moving wall of targets, instant reactions and the thrill of the next hit. Designed to get everyone moving.</p><div class="card-actions"><button class="btn mini-demo-link" data-demo="wall" type="button">Try live demo <span aria-hidden="true">↗</span></button><button class="text-link open-experience" data-game="wall" type="button">Details <span aria-hidden="true">↗</span></button></div></div>
-            </article>
-            <article class="experience-card card-pond">
-              <div class="experience-art art-pond">
-                <div class="pond-water" aria-hidden="true"><div class="water-ring ring-one"></div><div class="water-ring ring-two"></div><svg class="fish-svg fish-koi" viewBox="0 0 180 90"><path d="M24 45 3 15 Q0 45 3 75 Z" fill="#f1f3e6"/><ellipse cx="90" cy="45" rx="66" ry="30" fill="#f2f1e9"/><path d="M70 19C95 30 96 55 115 70L84 73C78 51 54 48 70 19Z" fill="#ed7147"/><path d="M121 19C140 26 148 42 150 47L121 47Z" fill="#dc583f"/><ellipse cx="144" cy="35" rx="4" ry="4" fill="#101d29"/><path d="M83 26 65 2 73 34M87 64 65 87 90 65" fill="#e8e8e0" opacity=".8"/></svg><svg class="fish-svg fish-gold" viewBox="0 0 180 90"><path d="M24 45 3 15 Q0 45 3 75 Z" fill="#ffa83c"/><ellipse cx="90" cy="45" rx="66" ry="30" fill="#ffbe52"/><ellipse cx="144" cy="35" rx="4" ry="4" fill="#182537"/><path d="M83 26 65 2 73 34M87 64 65 87 90 65" fill="#ff953b"/></svg></div>
-                <span class="art-label">02 / EXPLORE</span><span class="art-overlay-text">DIVE INTO PLAY.</span>
-              </div>
-              <div class="experience-content"><div class="experience-meta"><span>DISCOVERY & WONDER</span><span class="status-tag">IN DEVELOPMENT</span></div><h3>Interactive Fishing Pond</h3><p>A projected pond full of colourful fish. Create your own aquatic scene and bring a little magic to the floor.</p><div class="card-actions"><button class="btn mini-demo-link" data-demo="pond" type="button">Try live demo <span aria-hidden="true">↗</span></button><button class="text-link open-experience" data-game="pond" type="button">Details <span aria-hidden="true">↗</span></button></div></div>
-            </article>
-            <article class="experience-card card-ocean">
-              <div class="experience-art art-ocean">
-                <div class="ocean-light-beam beam-a" aria-hidden="true"></div><div class="ocean-light-beam beam-b" aria-hidden="true"></div>
-                <svg class="ocean-animals" viewBox="0 0 600 300" aria-hidden="true"><g fill="#58cbd0" opacity=".65"><path d="M320 145Q380 92 452 143Q385 207 320 145ZM326 145 288 112 293 185Z"/><path d="M90 95Q118 78 150 92Q122 111 90 95ZM92 95 73 79 77 108Z" opacity=".6"/><path d="M520 210Q542 190 565 210Q546 231 520 210ZM525 210 503 192 505 229Z" opacity=".5"/></g><path d="M80 216Q178 173 260 201L289 194 273 221 245 220Q162 265 80 216Z" fill="#092a44" stroke="#4ec7d2" stroke-width="2" opacity=".78"/><path d="M146 196 170 167 183 198" fill="#15435b"/><path d="M194 218 231 239 210 220" fill="#15435b"/></svg>
-                <span class="art-label">03 / DISCOVER</span><span class="art-overlay-text">THE OCEAN AWAITS.</span>
-              </div>
-              <div class="experience-content"><div class="experience-meta"><span>UNDERWATER ADVENTURE</span><span class="status-tag">IN DEVELOPMENT</span></div><h3>Ocean Explorer</h3><p>Step into a beautiful underwater world of swimming sea creatures, atmospheric scenes and hidden discoveries.</p><div class="card-actions"><button class="btn mini-demo-link" data-demo="ocean" type="button">Try live demo <span aria-hidden="true">↗</span></button><button class="text-link open-experience" data-game="ocean" type="button">Details <span aria-hidden="true">↗</span></button></div></div>
-            </article>
-            <article class="experience-card card-range">
-              <div class="experience-art art-range">
-                <div class="range-lights" aria-hidden="true"></div>
-                <div class="range-target range-target-a" aria-hidden="true"><span></span></div><div class="range-target range-target-b" aria-hidden="true"><span></span></div><div class="range-target range-target-c" aria-hidden="true"><span></span></div>
-                <div class="range-crosshair" aria-hidden="true">+</div>
-                <span class="art-label">04 / CHALLENGE</span><span class="art-overlay-text">TAKE YOUR SHOT.</span>
-              </div>
-              <div class="experience-content"><div class="experience-meta"><span>SKILL & PRECISION</span><span class="status-tag">IN DEVELOPMENT</span></div><h3>Ultimate Shooting Range</h3><p>Turn a projected wall into a foam-dart target challenge, with energetic arcade-style fun and creative game modes.</p><div class="card-actions"><button class="btn mini-demo-link" data-demo="range" type="button">Try live demo <span aria-hidden="true">↗</span></button><button class="text-link open-experience" data-game="range" type="button">Details <span aria-hidden="true">↗</span></button></div></div>
-            </article>
-          </div>
-          <p class="preview-disclaimer">Live web demos are simplified concept previews controlled by mouse, touch or keyboard. They are not the downloadable Interactabuild program, and do not use camera or projector hardware.</p>
-        </div>
-      </section>
-
+      <!-- HOW IT WORKS -->
       <section class="how-section section" id="how-it-works" aria-labelledby="how-heading">
         <div class="how-pattern" aria-hidden="true"></div>
         <div class="wrap">
-          <div class="section-top how-top"><div><p class="eyebrow"><span class="section-number">03 /</span> HOW IT WORKS</p><h2 id="how-heading">Your space. <span class="soft-text">A new dimension.</span></h2></div><p class="section-intro">The goal is simple: get the program, set up your equipment, choose a game and make your space come alive.</p></div>
-          <div class="steps-grid">
-            <div class="step-card"><div class="step-number">01</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="8" y="13" width="48" height="35" rx="6"/><path d="M24 56h16M32 48v8M18 25h12M18 32h20"/></svg></div><h3>Get the program</h3><p>Download and install the Interactabuild software when an official release becomes available.</p></div>
-            <div class="step-card"><div class="step-number">02</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="7" y="12" width="23" height="17" rx="4"/><circle cx="19" cy="20" r="5"/><path d="m30 17 27-8v39L30 27M40 54h17"/></svg></div><h3>Connect your setup</h3><p>Configure a compatible projector and interaction hardware, following the release setup guide.</p></div>
-            <div class="step-card"><div class="step-number">03</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m25 39-5-13c-2-5 3-8 6-4l8 12V12c0-6 9-6 9 0v17l7-5c5-3 8 4 5 8L43 53H28l-9-10c-3-5 2-9 6-4Z"/><path d="M13 10h8M10 18h7M20 3v7"/></svg></div><h3>Choose. Create. Play.</h3><p>Pick a game, personalise the experience and start playing with your chosen controls.</p></div>
+          <div class="section-top how-top"><div><p class="eyebrow"><span class="section-number">04 /</span> HOW IT WORKS</p><h2 id="how-heading">Up and running <span class="soft-text">in four steps.</span></h2></div><p class="section-intro">One download. No extra software to find, and no technical setup.</p></div>
+          <div class="steps-grid steps-four">
+            <div class="step-card"><div class="step-number">01</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 8v32M20 28l12 12 12-12M12 46v8h40v-8"/></svg></div><h3>Download and install</h3><p>Run the installer. Interactabuild adds itself to your Start menu and desktop, and opens in its own window.</p></div>
+            <div class="step-card"><div class="step-number">02</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><rect x="7" y="12" width="23" height="17" rx="4"/><circle cx="19" cy="20" r="5"/><path d="m30 17 27-8v39L30 27M40 54h17"/></svg></div><h3>Connect projector and camera</h3><p>Plug in your projector and the Orbbec Astra 2 camera, and point both at your wall or floor.</p></div>
+            <div class="step-card"><div class="step-number">03</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M10 10h12M10 10v12M54 10H42M54 10v12M10 54h12M10 54V42M54 54H42M54 54V42"/><circle cx="32" cy="32" r="6"/></svg></div><h3>Line it up once</h3><p>Mark the four corners of the play area. Interactabuild remembers it, so you only do this again if you move things.</p></div>
+            <div class="step-card"><div class="step-number">04</div><div class="step-icon" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="m25 39-5-13c-2-5 3-8 6-4l8 12V12c0-6 9-6 9 0v17l7-5c5-3 8 4 5 8L43 53H28l-9-10c-3-5 2-9 6-4Z"/></svg></div><h3>Pick a game and play</h3><p>Choose a game, make it yours and press play. From then on, Interactabuild starts by itself when you sign in to the computer.</p></div>
           </div>
-          <div class="how-note"><span class="note-sparkle" aria-hidden="true">✦</span><p><strong>Built for creativity.</strong> Interactabuild is being developed as a flexible platform rather than a single fixed game. Supported operating systems, equipment and calibration requirements will be confirmed before downloads are enabled.</p></div>
         </div>
       </section>
 
-
+      <!-- DOWNLOAD: the main goal of the page -->
       <section class="download-section section" id="download" aria-labelledby="download-heading">
-        <div class="wrap download-panel">
-          <div class="download-copy"><p class="eyebrow"><span class="section-number">04 /</span> YOUR NEXT STEP</p><h2 id="download-heading">See it. Love it. <span class="gradient-type">Run it yourself.</span></h2>
-            <p>Interactabuild is being built as a program you can download, install and use with your own compatible projection setup. This website is a preview of what’s coming.</p>
-            <div class="download-cta-row"><a href="#contact" class="btn btn-primary" id="download-action">Ask about release access <span aria-hidden="true">↗</span></a><a href="#demos" class="btn btn-secondary">Try the demos first</a></div>
-            <p class="download-status" id="download-status" role="status"><span class="status-orb" aria-hidden="true"></span> PUBLIC DOWNLOAD NOT AVAILABLE YET · TARGET: 2027</p>
-            <p class="download-small">We will only offer an installer here once an official download has been approved. Operating system and equipment compatibility details will be published before release.</p>
+        <div class="wrap">
+          <div class="download-head">
+            <p class="eyebrow"><span class="section-number">05 /</span> DOWNLOAD</p>
+            <h2 id="download-heading">Get <span class="gradient-type">Interactabuild.</span></h2>
+            <p class="download-lead" data-release-lead>Interactabuild launches on <strong>7 December 2026</strong>. The download buttons switch on that day. <a href="#notify">Get an email when it's ready.</a></p>
           </div>
-          <div class="download-visual" aria-label="Illustration of Interactabuild's planned install and play workflow"><div class="software-panel"><div class="software-top"><span class="software-dots">● ● ●</span><span>INTERACTABUILD / SOFTWARE</span></div><div class="software-head"><span class="software-brand-icon">✳</span><div><strong>Make your space interactive.</strong><small>CREATE · CUSTOMISE · PLAY</small></div></div><div class="software-item"><span>01</span><div><strong>Download the program</strong><small>When an official installer is available</small></div><span class="step-symbol">↓</span></div><div class="software-item"><span>02</span><div><strong>Set up your equipment</strong><small>Follow the compatible hardware guide</small></div><span class="step-symbol">◇</span></div><div class="software-item"><span>03</span><div><strong>Start a new experience</strong><small>Choose a game and begin</small></div><span class="step-symbol">▶</span></div></div></div>
+          <div class="download-cards">
+            <article class="dl-card dl-card-main">
+              <div class="dl-os"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg><span>Windows</span></div>
+              <h3>Interactabuild for Windows</h3>
+              <p class="dl-spec">Windows 11 · 64-bit · <span data-dl-size="windows">120 MB</span> · version <span data-dl-version>0.1.0</span></p>
+              <a class="btn btn-primary btn-download btn-wide" href="#notify" data-download="windows"><span class="dl-icon" aria-hidden="true">⬇</span> <span data-dl-text>Download for Windows</span></a>
+              <ol class="dl-steps">
+                <li>Open the downloaded file, <code>Interactabuild-Setup-<span data-dl-version>0.1.0</span>.exe</code>.</li>
+                <li>If Windows says <em>“Windows protected your PC”</em>, click <strong>More info</strong>, then <strong>Run anyway</strong>. Windows shows this for new programs.</li>
+                <li>Follow the installer. Interactabuild opens when it finishes.</li>
+              </ol>
+            </article>
+            <article class="dl-card">
+              <div class="dl-os"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><circle cx="19" cy="9" r="1.6"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="7.5" cy="6" r="1.6"/></svg><span>Ubuntu Linux</span></div>
+              <h3>Interactabuild for Ubuntu</h3>
+              <p class="dl-spec">Ubuntu 22.04, 24.04 or 26.04 · 64-bit · <span data-dl-size="linux">127 MB</span></p>
+              <a class="btn btn-secondary btn-download btn-wide" href="#notify" data-download="linux"><span class="dl-icon" aria-hidden="true">⬇</span> <span data-dl-text>Download for Ubuntu</span></a>
+              <ol class="dl-steps">
+                <li>Open the downloaded <code>.deb</code> file with App Center, or in a terminal run:<code class="cmd">sudo apt install ./interactabuild_<span data-dl-version>0.1.0</span>_amd64.deb</code></li>
+                <li>Find Interactabuild in your applications. It also starts by itself when you log in.</li>
+              </ol>
+            </article>
+          </div>
+          <p class="dl-note">Not available for Mac. <a href="#requirements">Check what you need</a> before you download.</p>
         </div>
       </section>
 
-      <section class="audience-section section" id="for-whom" aria-labelledby="audience-heading"><div class="wrap audience-grid"><div class="audience-copy"><p class="eyebrow"><span class="section-number">05 /</span> MADE FOR MEMORABLE MOMENTS</p><h2 id="audience-heading">Bring the <span class="gradient-type">wow factor</span> to your space.</h2><p>From a single activity wall to an imaginative interactive area, we're exploring the possibilities for places where people come together to play and discover.</p><a href="#contact" class="btn btn-primary">Talk to us about your space <span aria-hidden="true">↗</span></a></div><div class="audience-list" aria-label="Potential locations"><div><span class="audience-icon">✳</span><span>Family entertainment centres</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Play centres & attractions</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Events & immersive experiences</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Educational & creative spaces</span><span aria-hidden="true">↗</span></div></div></div></section>
+      <!-- REQUIREMENTS -->
+      <section class="req-section section" id="requirements" aria-labelledby="req-heading">
+        <div class="wrap req-grid">
+          <div>
+            <p class="eyebrow"><span class="section-number">06 /</span> WHAT YOU NEED</p>
+            <h2 id="req-heading">The kit list.</h2>
+            <p class="section-intro">Interactabuild runs on an ordinary computer. To try it and set up your games, that's all you need.</p>
+          </div>
+          <dl class="req-list">
+            <div><dt>Computer</dt><dd>Windows 11 (64-bit), or Ubuntu 22.04, 24.04 or 26.04. A graphics card gives the smoothest animation.</dd></div>
+            <div><dt>Space</dt><dd>About 250 MB on Windows, 350 MB on Ubuntu.</dd></div>
+            <div><dt>Projector</dt><dd>Any projector you can connect to the computer, for example by HDMI.</dd></div>
+            <div><dt>Camera</dt><dd>An Orbbec Astra 2 depth camera, so the games can see balls and touches on the wall.</dd></div>
+            <div><dt>No camera yet?</dt><dd>Every game also works with a mouse or a touchscreen, so you can build and test before you buy one.</dd></div>
+            <div><dt>Internet</dt><dd>Only to download. Everything runs on your own computer.</dd></div>
+          </dl>
+        </div>
+      </section>
 
-      <section class="faq-section section" id="questions" aria-labelledby="faq-heading"><div class="wrap faq-grid"><div><p class="eyebrow"><span class="section-number">06 /</span> GOOD TO KNOW</p><h2 id="faq-heading">Curious? <span class="soft-text">We get it.</span></h2><p class="faq-side">A few answers about the vision and the road ahead.</p></div><div class="faq-list"><details><summary>What exactly is Interactabuild? <span aria-hidden="true">+</span></summary><p>Interactabuild is a software project developing customisable interactive projection games and experiences. The idea is to transform ordinary surfaces into spaces that react to play.</p></details><details><summary>Can I use it with any projector? <span aria-hidden="true">+</span></summary><p>The platform is being developed around a projector and compatible interaction-sensing hardware. Final equipment requirements and supported configurations have not yet been published.</p></details><details><summary>Can I download Interactabuild now? <span aria-hidden="true">+</span></summary><p>Not yet. The software is still in development, and no public installer is being offered by this prototype website. The first subscriber target is June 2027, subject to testing and readiness.</p></details><details><summary>Can the experiences be customised? <span aria-hidden="true">+</span></summary><p>Customisation is a major part of the project, including settings for game environments, objects and other experience-specific options. Exact options vary by game and will be refined before release.</p></details></div></div></section>
+      <!-- WHO IT'S FOR -->
+      <section class="audience-section section" id="for-whom" aria-labelledby="audience-heading"><div class="wrap audience-grid"><div class="audience-copy"><p class="eyebrow"><span class="section-number">07 /</span> MADE FOR MEMORABLE MOMENTS</p><h2 id="audience-heading">Bring the <span class="gradient-type">wow factor</span> to your space.</h2><p>From one activity wall to a whole play area, Interactabuild gets people moving, laughing and coming back for another go.</p><a href="#download" class="btn btn-primary btn-download" data-download="windows"><span class="dl-icon" aria-hidden="true">⬇</span> <span data-dl-text>Download for Windows</span></a></div><div class="audience-list" aria-label="Where Interactabuild works well"><div><span class="audience-icon">✳</span><span>Family entertainment centres</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Soft play and play centres</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Schools, nurseries and sensory rooms</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Parties, events and attractions</span><span aria-hidden="true">↗</span></div><div><span class="audience-icon">✳</span><span>Your own home</span><span aria-hidden="true">↗</span></div></div></div></section>
 
-      <section class="contact-section section" id="contact" aria-labelledby="contact-heading"><div class="wrap contact-panel"><div class="contact-glow" aria-hidden="true"></div><div class="contact-copy"><p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> FOLLOW THE RELEASE</p><h2 id="contact-heading">Ready to <span class="gradient-type">start creating?</span></h2><p>The goal is to put the Interactabuild program in your hands. Until the official installer is available, you can explore the demos or prepare an enquiry about release access.</p><div class="launch-pill"><span aria-hidden="true">✦</span> FIRST RELEASE TARGET: 2027</div></div><form id="interest-form" class="contact-form"><h3>Register your interest</h3><p class="form-subtitle">Prepare a release-access enquiry.</p><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required maxlength="120"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="200"><label for="interest">I'm interested in…</label><select id="interest" name="interest"><option>Trying it when it launches</option><option>Using it at a venue</option><option>A future product demonstration</option><option>Something else</option></select><button type="submit" class="btn btn-primary form-submit">Prepare my enquiry <span aria-hidden="true">↗</span></button><p class="form-privacy">Prototype enquiry form: it won't send or store personal information until a contact destination is configured.</p><div id="form-status" role="status" aria-live="polite" hidden></div><button type="button" id="copy-enquiry" class="copy-enquiry" hidden>Copy enquiry text</button></form></div></section>
+      <!-- FAQ -->
+      <section class="faq-section section" id="faq" aria-labelledby="faq-heading"><div class="wrap faq-grid"><div><p class="eyebrow"><span class="section-number">08 /</span> GOOD TO KNOW</p><h2 id="faq-heading">Questions? <span class="soft-text">Answers.</span></h2><p class="faq-side">Can't find what you need? <a href="#notify">Send us a message.</a></p></div><div class="faq-list">
+        <details><summary>What is Interactabuild? <span aria-hidden="true">+</span></summary><p>A program for your computer that turns a projected wall or floor into interactive games. A camera watches the wall, so the games react when someone throws a ball at it or touches it. It comes with seven ready-made games that you can change and save.</p></details>
+        <details><summary>What do I need to get started? <span aria-hidden="true">+</span></summary><p>A Windows 11 or Ubuntu computer, a projector, and an Orbbec Astra 2 camera for ball and touch play. <a href="#requirements">See the full kit list.</a></p></details>
+        <details><summary>Can I try it without a camera? <span aria-hidden="true">+</span></summary><p>Yes. Every game works with a mouse or a touchscreen, so you can download Interactabuild, build your games and test them before you buy the camera.</p></details>
+        <details><summary>Can I use my own pictures? <span aria-hidden="true">+</span></summary><p>Yes. Upload your own backgrounds and monsters for Ball to Wall, your own hidden pictures for Touch and Uncover, and more. Your pictures stay on your computer.</p></details>
+        <details><summary>Does it work on a Mac? <span aria-hidden="true">+</span></summary><p>Not at the moment. Interactabuild is for Windows 11 and Ubuntu Linux.</p></details>
+        <details><summary>Does it need the internet? <span aria-hidden="true">+</span></summary><p>Only to download it. Interactabuild and your games run entirely on your own computer.</p></details>
+        <details><summary>Why does Windows warn me when I install it? <span aria-hidden="true">+</span></summary><p>Windows shows “Windows protected your PC” for programs it hasn't seen many times before. Click <strong>More info</strong>, then <strong>Run anyway</strong>. Only download Interactabuild from this website.</p></details>
+        <details><summary>When can I download it? <span aria-hidden="true">+</span></summary><p data-release-faq>Interactabuild launches on 7 December 2026. <a href="#notify">Leave your email</a> and we'll tell you the moment it's ready.</p></details>
+      </div></div></section>
+
+      <!-- NOTIFY / CONTACT -->
+      <section class="contact-section section" id="notify" aria-labelledby="contact-heading"><div class="wrap contact-panel"><div class="contact-glow" aria-hidden="true"></div><div class="contact-copy"><p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> STAY IN THE LOOP</p><h2 id="contact-heading">Be first to <span class="gradient-type">play.</span></h2><p>Leave your details and we'll email you when Interactabuild is ready to download. Got a question about your space? Ask it here too.</p><div class="launch-pill"><span aria-hidden="true">✦</span> <span data-release-pill>LAUNCHING 7 DECEMBER 2026</span></div></div><form id="interest-form" class="contact-form"><h3>Get launch news</h3><p class="form-subtitle">We'll only use your email to contact you about Interactabuild.</p><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required maxlength="120"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="200"><label for="interest">I'm interested in…</label><select id="interest" name="interest"><option>Downloading it on launch day</option><option>Using it at my venue</option><option>Using it at home</option><option>Asking a question</option></select><button type="submit" class="btn btn-primary form-submit">Keep me posted <span aria-hidden="true">↗</span></button><p class="form-privacy">This website doesn't store your details.</p><div id="form-status" role="status" aria-live="polite" hidden></div><button type="button" id="copy-enquiry" class="copy-enquiry" hidden>Copy message text</button></form></div></section>
     </main>
 
-    <footer class="site-footer"><div class="wrap footer-top"><a href="#top" class="brand footer-brand" aria-label="Interactabuild home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="brand-word">INTERACT<span class="brand-a">A</span>BUILD<span class="brand-period">.</span></span></a><p>Turning walls into worlds of play.</p></div><div class="wrap footer-bottom"><span>© <span id="year">2026</span> Interactabuild. All rights reserved.</span><span>Concept previews. Product under development.</span><a href="#top">Back to top ↑</a></div></footer>
+    <footer class="site-footer"><div class="wrap footer-top"><a href="#top" class="brand footer-brand" aria-label="Interactabuild home"><img class="brand-logo" src="assets/favicon-64.png" alt="" width="36" height="36"><span class="brand-word">INTERACTA<span class="brand-build">BUILD</span></span></a><nav class="footer-nav" aria-label="Footer"><a href="#games">Games</a><a href="#how-it-works">How it works</a><a href="#requirements">What you need</a><a href="#faq">FAQ</a><a href="#download">Download</a></nav></div><div class="wrap footer-bottom"><span>© <span id="year">2026</span> Interactabuild. All rights reserved.</span><span>Turn any wall into a game.</span><a href="#top">Back to top ↑</a></div></footer>
   </div>
-  <dialog id="experience-dialog" aria-labelledby="dialog-title"><button type="button" class="dialog-close" id="dialog-close" aria-label="Close experience details">×</button><span class="dialog-kicker" id="dialog-kicker"></span><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="dialog-detail-heading">WHAT WE'RE BUILDING</div><ul id="dialog-highlights"></ul><div class="dialog-notice">This experience is in development. Final features may change.</div><a class="btn btn-primary" href="#contact" id="dialog-cta">Ask about early access <span aria-hidden="true">↗</span></a></dialog>
 </body>
 </html>
