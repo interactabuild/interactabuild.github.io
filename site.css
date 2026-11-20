@@ -134,3 +134,9 @@
 /* Text under the headline: larger. */
 .hero-intro{font-size:19px;line-height:1.7;max-width:560px;color:#c9dbe5}
 @media(max-width:650px){.hero-intro{font-size:17px;line-height:1.7}}
+
+/* Phones and tablets: a solid top bar instead of the frosted-glass blur, which a phone
+   has to redraw constantly while the page loads and scrolls. */
+@media(max-width:900px){
+  .site-header{backdrop-filter:none;-webkit-backdrop-filter:none;background:#08111d}
+}
