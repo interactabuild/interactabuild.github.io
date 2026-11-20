@@ -115,3 +115,8 @@
 
 /* Keep short phrases (e.g. each part of the headline) on one line. */
 .nowrap{white-space:nowrap}
+
+/* The neon Interactabuild logo in the top bar. */
+.header-logo{display:block;height:50px;width:auto}
+@media(max-width:900px){.header-logo{height:40px}}
+@media(max-width:400px){.header-logo{height:34px}}
