@@ -157,3 +157,45 @@ const SITE = {
     }
   });
 })();
+
+/* Speed report: open the site with ?speed on the end (e.g. www.interactabuild.com/?speed)
+   to see where the loading time goes on this device, with a button to copy it. Nothing is
+   sent anywhere; without ?speed this does nothing. */
+(() => {
+  if (!/[?&]speed\b/.test(location.search)) return;
+  const report = () => {
+    const nav = performance.getEntriesByType('navigation')[0] || {};
+    const ms = v => (v > 0 ? Math.round(v) + ' ms' : '-');
+    const lines = [
+      'Interactabuild speed report',
+      'Device: ' + navigator.userAgent,
+      'Opened as: ' + (nav.type || '?') + ', protocol ' + (nav.nextHopProtocol || '?'),
+      'Redirects: ' + ms(nav.redirectEnd - nav.redirectStart),
+      'Address lookup (DNS): ' + ms(nav.domainLookupEnd - nav.domainLookupStart),
+      'Connecting: ' + ms(nav.connectEnd - nav.connectStart) + (nav.secureConnectionStart > 0 ? ' (secure part ' + ms(nav.connectEnd - nav.secureConnectionStart) + ')' : ''),
+      'Waiting for the page: ' + ms(nav.responseStart - nav.requestStart),
+      'Downloading the page: ' + ms(nav.responseEnd - nav.responseStart),
+      'Page ready to use: ' + ms(nav.domContentLoadedEventEnd),
+      'Everything loaded: ' + ms(nav.loadEventEnd),
+      'Files:'
+    ];
+    for (const r of performance.getEntriesByType('resource')) {
+      lines.push('  ' + r.name.replace(location.origin, '') + ': ' + ms(r.duration) +
+        ' (starts at ' + ms(r.startTime) + ', ' + (r.transferSize ? Math.round(r.transferSize / 1024) + ' KB' : 'saved copy') + ')');
+    }
+    const text = lines.join('\n');
+    const box = document.createElement('div');
+    box.style.cssText = 'position:fixed;inset:12px;z-index:9999;background:#fff;color:#000;font:12px/1.5 monospace;padding:12px;border-radius:10px;overflow:auto;white-space:pre-wrap;box-shadow:0 10px 40px #000a';
+    const copy = document.createElement('button');
+    copy.textContent = 'Copy this report';
+    copy.style.cssText = 'display:block;width:100%;padding:14px;margin-bottom:10px;font:bold 16px sans-serif;border-radius:8px;border:0;background:#2ad5c1;color:#000';
+    copy.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(text); copy.textContent = 'Copied – now paste it to Claude'; }
+      catch { copy.textContent = 'Select the text below and copy it'; }
+    });
+    box.append(copy, document.createTextNode(text));
+    document.body.append(box);
+  };
+  if (document.readyState === 'complete') setTimeout(report, 300);
+  else window.addEventListener('load', () => setTimeout(report, 300));
+})();
