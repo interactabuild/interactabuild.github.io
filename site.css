@@ -127,6 +127,6 @@
 
 /* Have a go: the heading on its own line, then the intro, then the "On your wall" line. */
 .demo-section-top{grid-template-columns:1fr;margin-bottom:22px}
-.section-intro.demo-intro{font-size:37.5px;line-height:1.25;font-weight:800;letter-spacing:-1px;color:#dff3fb;max-width:1000px;margin:0 0 18px}
-@media(max-width:650px){.section-intro.demo-intro{font-size:28px;letter-spacing:-.6px}}
+.section-intro.demo-intro{font-size:18.75px;line-height:1.6;font-weight:800;letter-spacing:-.3px;color:#dff3fb;max-width:900px;margin:0 0 14px}
+@media(max-width:650px){.section-intro.demo-intro{font-size:16px;letter-spacing:-.2px}}
 @media(max-width:650px){.demo-guide-note{font-size:16px}}
