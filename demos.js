@@ -40,6 +40,12 @@
   const rand = (a, b) => a + Math.random() * (b - a);
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const distance = (x, y, p) => Math.hypot(x - p.x, y - p.y);
+  // A finger-sized reach (about 26 screen pixels) in preview units: on a phone the preview
+  // is drawn at about a third of its size, so small targets need a bigger hit area.
+  const fingerReach = () => {
+    const box = canvas.getBoundingClientRect();
+    return 26 / (Math.max(box.width / W, box.height / H) || 1);
+  };
   const fill = (color, x = 0, y = 0, w = W, h = H) => { ctx.fillStyle = color; ctx.fillRect(x, y, w, h); };
   const radial = (x, y, radius, stops) => {
     const g = ctx.createRadialGradient(x, y, 0, x, y, radius);
@@ -132,7 +138,9 @@
       // The nearest monster (drawn last) wins when they overlap; the helper button hits
       // the one closest to reaching you.
       const byNearness = [...state.monsters].sort((a, b) => b.age - a.age);
-      let hit = byNearness.find(m => distance(m.x, m.y, point) <= Math.max(18, monsterSize(m) * .45));
+      const reach = fingerReach();
+      let hit = byNearness.filter(m => distance(m.x, m.y, point) <= Math.max(reach, monsterSize(m) * .5))
+        .sort((a, b) => distance(a.x, a.y, point) - distance(b.x, b.y, point))[0];
       if (useAssist) hit = byNearness[0];
       if (hit) {
         state.score += 10; fx(hit.x, hit.y, '#ff6fc8', '+10');
@@ -140,7 +148,9 @@
       } else fx(x, y, '#a4c4d2');
     } else if (mode === 'pond') {
       const seen = state.fish.filter(f => !f.away && inPond(f.x, f.y));
-      let caught = seen.find(f => distance(f.x, f.y, point) <= Math.max(22, sizeOf(f.type) * .6));
+      const reach = fingerReach();
+      let caught = seen.filter(f => distance(f.x, f.y, point) <= Math.max(reach, sizeOf(f.type) * .6))
+        .sort((a, b) => distance(a.x, a.y, point) - distance(b.x, b.y, point))[0];
       if (useAssist) caught = seen.sort((a, b) => distance(a.x, a.y, POND) - distance(b.x, b.y, POND))[0];
       if (caught) {
         state.score += 10; fx(caught.x, caught.y, '#69f0d3', '+10');
@@ -163,7 +173,9 @@
     } else if (mode === 'range') {
       if (state.clock <= 0) { initGame('range'); return; }
       const live = state.targets.filter(o => o.hitTime <= 0), r = rangeR();
-      let hit = live.find(o => distance(o.x * W, o.y * H, point) <= r + 6);
+      const reach = Math.max(r + 6, fingerReach());
+      let hit = live.filter(o => distance(o.x * W, o.y * H, point) <= reach)
+        .sort((a, b) => distance(a.x * W, a.y * H, point) - distance(b.x * W, b.y * H, point))[0];
       // The helper button aims at the middle of the nearest target.
       if (useAssist) { hit = live.sort((a, b) => distance(a.x * W, a.y * H, point) - distance(b.x * W, b.y * H, point))[0]; if (hit) { x = hit.x * W; y = hit.y * H; } }
       if (hit) {
