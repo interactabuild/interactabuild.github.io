@@ -26,10 +26,19 @@ const SITE = {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   const openedAtSection = Boolean(location.hash);
   if (openedAtSection) history.replaceState(null, '', location.pathname + location.search);
-  window.scrollTo(0, 0);
-  window.addEventListener('pageshow', () => window.scrollTo(0, 0));
-  // Firefox jumps to the old section only after the page has loaded.
-  if (openedAtSection) window.addEventListener('load', () => setTimeout(() => window.scrollTo(0, 0), 0));
+  /* Links from the other pages ask for a section with ?to=section (e.g. index.html?to=faq).
+     Go there once, then tidy the address so a remembered address still opens at the top. */
+  const params = new URLSearchParams(location.search);
+  const toId = params.get('to');
+  const toSection = toId && /^[\w-]+$/.test(toId) ? document.getElementById(toId) : null;
+  // demos.js reads ?try= too, so tidy the address only once both scripts have run.
+  if (params.has('to') || params.has('try')) document.addEventListener('DOMContentLoaded', () => history.replaceState(null, '', location.pathname));
+  const startPosition = () => { if (toSection) toSection.scrollIntoView({ behavior: 'instant', block: 'start' }); else window.scrollTo(0, 0); };
+  startPosition();
+  window.addEventListener('pageshow', startPosition);
+  // Firefox jumps to the old section only after the page has loaded; pictures above the
+  // section can also move it while they load.
+  if (openedAtSection || toSection) window.addEventListener('load', () => setTimeout(startPosition, 0));
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href^="#"]');
     if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) return;
@@ -87,7 +96,7 @@ const SITE = {
       el.classList.remove('is-waiting');
     } else {
       // Not out yet: send people to the launch-news form instead of a dead link.
-      if (el.tagName === 'A') el.href = '#notify';
+      if (el.tagName === 'A') el.href = document.getElementById('notify') ? '#notify' : 'index.html?to=notify';
       if (label) label.textContent = `Available ${shortLaunch}`;
       el.classList.add('is-waiting');
     }
@@ -112,6 +121,7 @@ const SITE = {
   /* Launch-news form: opens the visitor's email app when a contact address is set;
      otherwise prepares text to copy. It never stores anything. */
   const form = document.getElementById('interest-form');
+  if (!form) return;                      // pages without the launch-news form
   const message = document.getElementById('form-status');
   const copyButton = document.getElementById('copy-enquiry');
   const submitButton = form.querySelector('button[type=submit]');

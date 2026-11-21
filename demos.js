@@ -1070,7 +1070,9 @@
     }
     requestAnimationFrame(tick);
   }
-  selectGame('range');
+  // index.html?try=pond (from the templates page) opens that game's preview first.
+  const askedFor = new URLSearchParams(location.search).get('try');
+  selectGame(tabButtons.some(t => t.dataset.demo === askedFor) ? askedFor : 'range');
   resize();
   requestAnimationFrame(tick);
 })();
