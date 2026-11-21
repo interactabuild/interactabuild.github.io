@@ -238,6 +238,12 @@
       previewsNear = true; wakeArt(mode);
     }, { rootMargin: '250px 0px' }).observe(canvas);
   }
+  // Fetch just the two pictures of the preview shown first (about 165 KB) as soon as the
+  // page has loaded, so the preview is ready when someone scrolls down to it. The other
+  // previews still fetch their pictures only when chosen.
+  const readyFirstPreview = () => { previewsNear = true; wakeArt(mode); };
+  if (document.readyState === 'complete') setTimeout(readyFirstPreview, 300);
+  else window.addEventListener('load', () => setTimeout(readyFirstPreview, 300), { once: true });
 
   function update(dt) {
     state.time += dt;
