@@ -158,30 +158,46 @@ const SITE = {
   });
 })();
 
-/* Speed report: open the site with ?speed on the end (e.g. www.interactabuild.com/?speed)
-   to see where the loading time goes on this device, with a button to copy it. Nothing is
-   sent anywhere; without ?speed this does nothing. */
+/* Speed report: open the site with ?speed on the end (e.g. www.interactabuild.com/?speed).
+   A small "Speed report" button stays in the corner while it records loading times, every
+   file, when each section came on screen and any moments the page froze while scrolling.
+   Tap it to see the report with a button to copy it. Nothing is sent anywhere; without
+   ?speed this does nothing. */
 (() => {
   if (!/[?&]speed\b/.test(location.search)) return;
+  const ms = v => (v > 0 ? Math.round(v) + ' ms' : '-');
+  // Freezes: gaps between drawn frames longer than 100 ms, with where the page was scrolled to.
+  const freezes = []; let frames = 0, last = 0;
+  const tick = t => { if (last && t - last > 100) freezes.push([last, t - last, Math.round(scrollY)]); last = t; frames++; requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+  // When each section first came on screen.
+  const seen = [];
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { seen.push([e.target.id || e.target.className.split(' ')[0], e.time]); io.unobserve(e.target); } }));
+    document.querySelectorAll('section, #experience-canvas').forEach(el => io.observe(el));
+  }
   const report = () => {
     const nav = performance.getEntriesByType('navigation')[0] || {};
-    const ms = v => (v > 0 ? Math.round(v) + ' ms' : '-');
     const lines = [
       'Interactabuild speed report',
       'Device: ' + navigator.userAgent,
+      'Screen: ' + innerWidth + 'x' + innerHeight + ' at ' + devicePixelRatio + 'x',
       'Opened as: ' + (nav.type || '?') + ', protocol ' + (nav.nextHopProtocol || '?'),
-      'Redirects: ' + ms(nav.redirectEnd - nav.redirectStart),
       'Address lookup (DNS): ' + ms(nav.domainLookupEnd - nav.domainLookupStart),
-      'Connecting: ' + ms(nav.connectEnd - nav.connectStart) + (nav.secureConnectionStart > 0 ? ' (secure part ' + ms(nav.connectEnd - nav.secureConnectionStart) + ')' : ''),
+      'Connecting: ' + ms(nav.connectEnd - nav.connectStart),
       'Waiting for the page: ' + ms(nav.responseStart - nav.requestStart),
-      'Downloading the page: ' + ms(nav.responseEnd - nav.responseStart),
       'Page ready to use: ' + ms(nav.domContentLoadedEventEnd),
       'Everything loaded: ' + ms(nav.loadEventEnd),
-      'Files:'
+      'Report taken at: ' + ms(performance.now()),
+      'Frames drawn: ' + frames + ', freezes over 100 ms: ' + freezes.length,
+      ...freezes.slice().sort((a, b) => b[1] - a[1]).slice(0, 12).map(([at, len, y]) => '  froze ' + ms(len) + ' at ' + ms(at) + ' (scrolled to ' + y + ')'),
+      'Came on screen:',
+      ...seen.map(([name, t]) => '  ' + name + ' at ' + ms(t)),
+      'Files (start -> finish):'
     ];
     for (const r of performance.getEntriesByType('resource')) {
-      lines.push('  ' + r.name.replace(location.origin, '') + ': ' + ms(r.duration) +
-        ' (starts at ' + ms(r.startTime) + ', ' + (r.transferSize ? Math.round(r.transferSize / 1024) + ' KB' : 'saved copy') + ')');
+      lines.push('  ' + r.name.replace(location.origin, '') + ': ' + ms(r.startTime) + ' -> ' + ms(r.responseEnd) +
+        ' (' + (r.transferSize ? Math.round(r.transferSize / 1024) + ' KB' : 'saved copy') + ')');
     }
     const text = lines.join('\n');
     const box = document.createElement('div');
@@ -193,9 +209,17 @@ const SITE = {
       try { await navigator.clipboard.writeText(text); copy.textContent = 'Copied – now paste it to Claude'; }
       catch { copy.textContent = 'Select the text below and copy it'; }
     });
-    box.append(copy, document.createTextNode(text));
+    const close = document.createElement('button');
+    close.textContent = 'Close';
+    close.style.cssText = 'display:block;width:100%;padding:10px;margin-bottom:10px;font:bold 14px sans-serif;border-radius:8px;border:1px solid #999;background:#eee;color:#000';
+    close.addEventListener('click', () => box.remove());
+    box.append(copy, close, document.createTextNode(text));
     document.body.append(box);
   };
-  if (document.readyState === 'complete') setTimeout(report, 300);
-  else window.addEventListener('load', () => setTimeout(report, 300));
+  const open = document.createElement('button');
+  open.textContent = 'Speed report';
+  open.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:9998;padding:12px 16px;font:bold 15px sans-serif;border-radius:10px;border:0;background:#2ad5c1;color:#000;box-shadow:0 4px 16px #0008';
+  open.addEventListener('click', report);
+  const add = () => document.body.append(open);
+  if (document.body) add(); else document.addEventListener('DOMContentLoaded', add);
 })();
