@@ -238,19 +238,6 @@
       previewsNear = true; wakeArt(mode);
     }, { rootMargin: '250px 0px' }).observe(canvas);
   }
-  // Once the page itself has loaded, fetch the remaining pictures quietly in the
-  // background, so they are already there when someone scrolls down or switches preview.
-  // (Waiting until each one was on screen made pictures appear late on iPhones.)
-  // Skipped when the phone asks to save data.
-  const warmUp = () => {
-    if (navigator.connection && navigator.connection.saveData) return;
-    previewsNear = true;
-    wakeArt(mode);
-    Object.keys(art).forEach(wakeArt);
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
-  };
-  if (document.readyState === 'complete') setTimeout(warmUp, 300);
-  else window.addEventListener('load', () => setTimeout(warmUp, 300), { once: true });
 
   function update(dt) {
     state.time += dt;
